@@ -104,10 +104,6 @@ export default function App() {
                   Masuk Sekarang
                 </button>
 
-                <div className="text-center mt-4 text-xs text-slate-500">
-                  <p>Hint - Username: <span className="text-slate-300 font-mono">kelompok7</span></p>
-                  <p>Hint - Password: <span className="text-slate-300 font-mono">pajak123</span></p>
-                </div>
               </form>
             </div>
           </div>
