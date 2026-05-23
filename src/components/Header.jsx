@@ -6,9 +6,7 @@ export default function Header({ isLoggedIn, onLogout, isDarkMode, toggleTheme }
       <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
           <span>Pajak<span className="text-emerald-500">ID</span></span>
-          <span className="ml-2 px-2 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 rounded-full border border-emerald-500/20 hidden md:inline-block">
-            UU HPP 2022
-          </span>
+          <span className="text-sm text-emerald-500 dark:text-emerald-400 font-medium">Universitas Diponegoro</span>
         </div>
         
         <div className="flex items-center gap-4">

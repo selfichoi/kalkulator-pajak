@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import TaxForm from './components/TaxForm';
 import ResultCard from './components/ResultCard';
+import Pph23Calculator from './pages/Pph23Calculator'; // TAMBAHKAN BARIS INI
+
+// 1. IMPORT HALAMAN PPH 21 YANG BARU DIBUAT
+import Pph21Calculator from './pages/Pph21Calculator'; 
 
 export default function App() {
   const [activePage, setActivePage] = useState('login'); 
@@ -26,7 +30,7 @@ export default function App() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === 'kelompok7' && password === 'pajak123') {
+    if (username === 'kelompok7' && password === 'simut123') {
       setActivePage('dashboard');
       setLoginError('');
       setUsername('');
@@ -54,6 +58,7 @@ export default function App() {
       
       <main className="flex-grow max-w-5xl mx-auto px-4 mt-10 w-full flex flex-col">
         
+        {/* HALAMAN LOGIN */}
         {activePage === 'login' && (
           <div className="flex-grow flex items-center justify-center animate-in fade-in zoom-in-95 duration-500">
             <div className="bg-white dark:bg-slate-800 p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700/50 w-full max-w-md relative overflow-hidden transition-colors duration-300">
@@ -91,6 +96,7 @@ export default function App() {
           </div>
         )}
 
+        {/* HALAMAN DASHBOARD */}
         {activePage === 'dashboard' && (
           <div className="animate-in fade-in duration-500 pt-8">
             <div className="text-center mb-12">
@@ -103,27 +109,31 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Menu Kalkulator PPN */}
               <div onClick={() => setActivePage('calculator')} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-emerald-500/30 hover:border-emerald-500 cursor-pointer transition-all hover:shadow-xl hover:shadow-emerald-900/10 dark:hover:shadow-emerald-900/20 group">
                 <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📊</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Kalkulator PPN & PPnBM</h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">Hitung PPN 12%, DPP Nilai Lain, dan Pajak Barang Mewah sesuai UU HPP.</p>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 opacity-70 cursor-not-allowed">
-                <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700/50 rounded-xl flex items-center justify-center text-2xl mb-4">💼</div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Kalkulator PPh 21</h3>
+              
+              {/* Menu Kalkulator PPh 21 (Sudah Diaktifkan) */}
+              <div onClick={() => setActivePage('pph21')} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-emerald-500/30 hover:border-emerald-500 cursor-pointer transition-all hover:shadow-xl hover:shadow-emerald-900/10 dark:hover:shadow-emerald-900/20 group">
+                <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">💼</div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Kalkulator PPh 21</h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">Hitung Pajak Penghasilan karyawan dengan tarif efektif rata-rata (TER).</p>
-                <span className="text-xs font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded-full">Segera Hadir</span>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 opacity-70 cursor-not-allowed">
-                <div className="w-12 h-12 bg-slate-200 dark:bg-slate-700/50 rounded-xl flex items-center justify-center text-2xl mb-4">📚</div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Regulasi & Aturan</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">Kumpulan dasar hukum, Peraturan Menteri Keuangan, dan panduan pajak.</p>
-                <span className="text-xs font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded-full">Segera Hadir</span>
+
+              {/* Menu Regulasi */}
+              <div onClick={() => setActivePage('pph23')} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-emerald-500/30 hover:border-emerald-500 cursor-pointer transition-all hover:shadow-xl hover:shadow-emerald-900/10 dark:hover:shadow-emerald-900/20 group">
+                <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📄</div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Kalkulator PPh 23</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">Hitung pemotongan pajak atas dividen, bunga, royalti, sewa, dan jasa.</p>
               </div>
             </div>
           </div>
         )}
 
+        {/* HALAMAN KALKULATOR PPN */}
         {activePage === 'calculator' && (
           <div className="animate-in fade-in duration-500">
             <button onClick={handleBackToDashboard} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium text-sm">
@@ -142,6 +152,33 @@ export default function App() {
           </div>
         )}
 
+        {/* HALAMAN KALKULATOR PPh 21 BARU */}
+        {activePage === 'pph21' && (
+          <div className="animate-in fade-in duration-500">
+            <button onClick={handleBackToDashboard} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium text-sm">
+              <span>←</span> Kembali ke Dashboard
+            </button>
+            
+            {/* Memanggil Komponen PPh 21 dari file Pph21Calculator.jsx */}
+            <Pph21Calculator />
+            
+          </div>
+        )}
+
+        {/* HALAMAN KALKULATOR PPh 23 BARU */}
+          {/* HALAMAN KALKULATOR PPh 23 BARU */}
+            {activePage === 'pph23' && (
+              <div className="animate-in fade-in duration-500">
+                <button onClick={handleBackToDashboard} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium text-sm">
+                  <span>←</span> Kembali ke Dashboard
+                </button>
+                
+                {/* Panggil komponen PPh 23 di sini! */}
+                <Pph23Calculator />
+                
+              </div>
+            )}
+
       </main>
 
       <footer className="mt-16 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950/30 py-6 transition-colors duration-300">
@@ -149,7 +186,7 @@ export default function App() {
           <p className="text-slate-500 dark:text-slate-400 text-sm font-medium tracking-wide">
             &copy; {new Date().getFullYear()} <span className="text-emerald-600 dark:text-emerald-500">Kelompok 7</span>. All rights reserved.
           </p>
-          <p className="text-slate-400 dark:text-slate-600 text-xs mt-1.5">Project Tugas Aplikasi Perhitungan PPN & PPnBM.</p>
+          <p className="text-slate-400 dark:text-slate-600 text-xs mt-1.5">Tugas Project Praktikum Komputer Perpajakan</p>
         </div>
       </footer>
     </div>
